@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logoninja.jpg';
 import './App.css';
-import { Texto, Boton } from './read-section';
 
 
 class App extends Component {
