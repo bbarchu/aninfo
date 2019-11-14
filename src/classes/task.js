@@ -1,4 +1,4 @@
-var Enum = require('enum');
+//var Enum = require('enum');
 
 class Task {
     
@@ -6,8 +6,8 @@ class Task {
         this.id = null;
         this.name_ = name;
         this.state = 0; //not started
-        this.estimation = 0;
-        this.developer = null;
+        this.estimation_ = 0;
+        this.developer_ = null;
     }
 
     set name(name) {
@@ -17,16 +17,16 @@ class Task {
         return this.name_;
     }
 
-    set estimation(horas){
-        this.estimation = horas;
+    set estimation(horas = 0){
+        this.estimation_ = horas;
     }
 
     get estimation(){
-        return this.estimation;
+        return this.estimation_;
     }
 
     set developer(developerName){
-        this.developer = developerName;
+        this.developer_ = developerName;
     }
 
     get developer(){
@@ -59,3 +59,5 @@ class Task {
 }
 
 // const State = new Enum(['not started', 'developing', 'blocked', 'finished']);
+//export default Task;
+exports.Task = Task;

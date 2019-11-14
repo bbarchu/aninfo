@@ -1,3 +1,5 @@
+var Task = require('../classes/task').Task;
+
 class Project {
     constructor(name = ""){
         this.name_ = name;
@@ -21,7 +23,7 @@ class Project {
     }
 
     createNewTask(){
-        tarea = new Task();
+        let tarea = new Task();
         this.tasks.push(tarea);
         return tarea;
     }
@@ -31,3 +33,5 @@ class Project {
     }
 
 }
+
+exports.Project = Project;
