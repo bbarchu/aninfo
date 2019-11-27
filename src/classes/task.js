@@ -5,9 +5,8 @@ class Task {
     constructor(name = "") {
         this.id = null;
         this.name_ = name;
-        this.state = 0; //not started
+        this.state_ = 0; //not started
         this.estimation_ = 0;
-        this.developer_ = null;
     }
 
     set name(name) {
@@ -25,39 +24,36 @@ class Task {
         return this.estimation_;
     }
 
-    set developer(developerName){
-        this.developer_ = developerName;
-    }
-
-    get developer(){
-        return this.developer;
+    get state(){
+        return this.state_;
     }
 
     blockTask(){
-        if(this.state == 1){
-            this.state = 2;
+        if(this.state_ == 1){
+            this.state_ = 2;
         }        
     }
 
     resumeTask(){
-        if(this.state == 2){
-            this.state = 1;
+        if(this.state_ == 2){
+            this.state_ = 1;
         }   
     }
 
     startTask(){
-        if(this.state == 0){
-            this.state = 1;
+        if(this.state_ == 0){
+            this.state_ = 1;
         }
     }
 
     finishTask(){
-        if(this.state == 1){
-            this.state = 3;
+        if(this.state_ == 1){
+            this.state_ = 3;
         }
     }
 }
 
-// const State = new Enum(['not started', 'developing', 'blocked', 'finished']);
+//const State = new Enum(['not started', 'developing', 'blocked', 'finished']);
 //export default Task;
 exports.Task = Task;
+

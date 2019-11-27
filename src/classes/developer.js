@@ -18,8 +18,34 @@ class Developer {
             this.assignedTask = tarea;
             this.hasAsiggnedTask = true;
         }
-        
+    }
+
+    startTask(tarea){
+        tarea.startTask();
+    }
+
+    resumeTask(tarea){
+        tarea.resumeTask();
+    }
+
+    finishTask(tarea){
+        tarea.finishTask()
+    }
+
+    taskCount(){
+        if(this.hasAsiggnedTask){
+            return 1;
+        }
+        return 0;
+    }
+
+    blockTask(tarea){
+        tarea.blockTask();
+    }
+
+    estimar(tarea,horas){
+        tarea.estimation = horas;
     }
 }
 
-Developer.export
+exports.Developer = Developer;

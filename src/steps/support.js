@@ -1,47 +1,63 @@
+//var Ticket = require('../classes/ticket').Ticket;
+var MesaAyuda = require('../classes/mesaAyuda').MesaAyuda;
+
 const defineSupportCode = require('cucumber').defineSupportCode;
 const assert = require('assert');
 
 
 defineSupportCode(function({Given,Then,When}){
-    let ticketsEmployee = 0;
-    let ticketsTotal = 0;
-    Given('1 I am a employee logged in the system and i have {int} tickets',
+    let mesa = new MesaAyuda();
+    let tickets;
+    Given('Soy un empleado logueado en el sistema y la mesa de ayuda tiene {int} tickets',
         function (input){
-            ticketsEmployee= input;
+            tickets = mesa.ticketsCreados;
         });    
-    When('1 I go to the help desk page and add {int} ticket',
+    When('Voy hasta la mesa de ayuda y agrego {int} ticket',
         function(input){
-            if(ticketsEmployee < 3){
-                ticketsEmployee= ticketsEmployee + input;
-                ticketsTotal+=input
-            }
-            
+            mesa.crearTicket();        
         });    
-    Then('I should see the help desk page meaning that it went ok with plus {int} ticket',
+    Then('Deberia ver la mesa de ayuda con {int} ticket creado exitosamente',
         function(input){
-            assert.equal(ticketsTotal, input); 
+            assert.equal(mesa.ticketsCreados, input); 
         });
 });
 
 defineSupportCode(function({Given,Then,When}){
-    let ticketsEmployee = 0;
-    let ticketsTotal = 0;
-    Given('2 I am a employee logged in the system and i have {int} tickets',
-        function (input){
-            ticketsEmployee = input;
+    let mesa = new MesaAyuda();
+    let ticket;
+    Given('Que soy un empleado logueado en el sistema',
+        function (){
+            tickets = mesa.ticketsCreados;
         });    
-    When('2 I go to the help desk page and add {int} ticket',
-        function(input){
-            if(ticketsEmployee < 3){
-                ticketsEmployee= ticketsEmployee + input;
-                ticketsTotal+=input
-            }
-        });    
-    Then('I should see the msg error and the tickets created are the same',
+    When('Voy a la mesa de ayuda, creo 1 ticket y lo inicio',
         function(){
-            assert.equal(ticketsTotal, 0); 
+            ticket = mesa.crearTicket();
+            mesa.iniciarTicket(ticket);
+        });    
+    Then('Deberia estar iniciado el ticket',
+        function(){
+            let iniciado = 1;
+            assert.equal(ticket.state, iniciado); 
         });
 });
 
+defineSupportCode(function({Given,Then,When}){
+    let mesa = new MesaAyuda();
+    let ticket;
+    Given('que soy un empleado logueado en el sistema y hay un ticket iniciado',
+        function (){
+            ticket = mesa.crearTicket();
+            mesa.iniciarTicket(ticket);
+        });    
+    When('voy a la mesa de ayuda, finalizo un ticket ya iniciado',
+        function(){
+            mesa.finalizarTicket(ticket);            
+        });    
+    Then('el ticket deberia estar finalizado',
+        function(){
+            let finalizado= 2;
+            assert.equal(ticket.state, finalizado); 
+        });
+});
 
 
