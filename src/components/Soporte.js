@@ -17,9 +17,6 @@ class Soporte extends Component {
     //return <h1>Se agrego el ticket</h1>;
 
     this.setState({...this.state,  mostrarMensaje: true});
-
-    console.log("llamando");
-    console.log(this.state.mostrarMensaje)
   }
 
   render() {
@@ -52,8 +49,8 @@ class Soporte extends Component {
             </label><br></br>
             <label>
             <div className="field">
-                Proyecto:
-                <input type="text" name="proyecto"  className="form-control"/>
+                Producto:
+                <input type="text" name="producto"  className="form-control"/>
             </div>
             </label><br></br>
             <label>
@@ -72,10 +69,12 @@ class Soporte extends Component {
         </form>
 
         {this.state.mostrarMensaje  &&
-        
-        <h4>
-          Se creo el ticket exitosamente
-        </h4>
+        <div className="cointainer-fluid">
+          <h4 className="card-title">
+            Se creo el ticket exitosamente
+          </h4>
+            
+        </div>
         }       
       </div>
       
