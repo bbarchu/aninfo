@@ -25,8 +25,9 @@ class Soporte extends Component {
     return (
       <div className="form-group">
         <form onSubmit={this.handleSubmitCreate}>
-            <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" />
-            <input type="submit" value="Atender llamada" name="submit" className="btn btn-primary" onClick={this.handleSubmitAnswer.bind(this)}/>
+          <br></br>&nbsp;
+            <input type="submit" value="Crear ticket" name="submit" class="btn btn-success btn-lg" /> 
+             &nbsp;  <input type="submit" value="Atender llamada" name="submit" class="btn btn-warning btn-lg" onClick={this.handleSubmitAnswer.bind(this)}/>
         </form>
       </div>
       

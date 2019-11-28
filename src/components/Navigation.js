@@ -4,7 +4,7 @@ import 'semantic-ui-css/semantic.min.css'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default class NavigationBar extends Component {
@@ -50,6 +50,14 @@ export default class NavigationBar extends Component {
                     className="sales"
                     style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
                 Ventas
+            </Button>
+            <Button id="soporte"
+                    component={Link}
+                    to="/Soporte"
+                    color='inherit'
+                    className="sales"
+                    style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
+                Soporte
             </Button>
             <IconButton to="/HomerPage" style={{textAlign:'center', color: "inherit", float: "right",marginTop:".1%"}}>
                 <AccountCircleIcon fontSize={"large"}/>

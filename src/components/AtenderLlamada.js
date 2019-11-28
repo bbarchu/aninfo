@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Soporte extends Component {
+class AtencionDeLlamada extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +9,21 @@ class Soporte extends Component {
 
 render() {
     return (
+      <div>
+
+      <div class="card bg-light mb-3" >
+        <div class="card-header">Atender llamado</div>
+        <div class="card-body">
+          <h5 class="card-title">Llamada entrante de...</h5>
+          <p class="card-text">Empresa: Motorola</p>
+          <p class="card-text">Producto: Green app</p>
+          <p class="card-text">Version: 1.1</p>
+          <p class="card-text">Historial del cliente:</p>
+
+        </div>
+      </div>
+      
+    
     <table>
     <tr>
       <th>Fecha</th>
@@ -39,8 +54,10 @@ render() {
       <td>La conversión de monedas se realiza de errónea.</td>
     </tr>
   </table>
+  </div>
     );
 }
 }
 
-export default Soporte;
+export default AtencionDeLlamada;
+
