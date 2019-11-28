@@ -26,8 +26,8 @@ class Soporte extends Component {
       <div class="jumbotron">
         <form onSubmit={this.handleSubmitCreate}>
           <br></br>&nbsp;
-            <input type="submit" value="Crear ticket" name="submit" class="btn btn-success btn-lg" /> 
-             &nbsp;  <input type="submit" value="Atender llamada" name="submit" class="btn btn-warning btn-lg" onClick={this.handleSubmitAnswer.bind(this)}/>
+            <input type="submit" value="Crear ticket" name="submitCreateTicket" class="btn btn-success btn-lg" /> 
+             &nbsp;  <input type="submit" value="Atender llamada" name="submitAnswerCall" class="btn btn-warning btn-lg" onClick={this.handleSubmitAnswer.bind(this)}/>
         </form>
       </div>
       

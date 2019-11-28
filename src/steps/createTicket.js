@@ -19,7 +19,7 @@ defineSupportCode(function(context) {
         .build();
     var by = driver.By;
  
-    Given(/^que soy un empleado de soporte$/, function () {
+    Given(/^que soy un empleado de soporte que quiere generar un ticket$/, function () {
         return browser.get('http://localhost:3000/Soporte/CrearTicket');
     });
  
