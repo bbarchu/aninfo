@@ -8,7 +8,7 @@ class Ticket {
         this.tipo_ = 0; //not started
         this.severidad_ = 0;
         this.producto_ = null;
-        this.version_producto = 0;
+        this.version_producto_ = null;
         this.state_ = 0;
     }
 
