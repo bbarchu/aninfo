@@ -4,78 +4,30 @@ import React, { Component } from 'react';
 class Soporte extends Component {
   constructor(props) {
     super(props);
-    
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitCreate = this.handleSubmitCreate.bind(this);
+    this.handleSubmitAnswer = this.handleSubmitAnswer.bind(this);
     this.state = {
-      mostrarMensaje: false
     }
   }
 
   
-  handleSubmit(event) {
+  handleSubmitCreate(event) {
     event.preventDefault();
-    //return <h1>Se agrego el ticket</h1>;
+    this.props.history.push(`/Soporte/CrearTicket`)
+  }
 
-    this.setState({...this.state,  mostrarMensaje: true});
+  handleSubmitAnswer(event) {
+    event.preventDefault();
+    this.props.history.push(`/Soporte/AtenderLlamada`)
   }
 
   render() {
     return (
       <div className="form-group">
-        <form onSubmit={this.handleSubmit}>
-            <h2>Generar ticket</h2>
-            <label>
-              <div className="field">
-                Clasificacion:
-                <select name="clasificacion"  className="form-control">
-                <option value="s0" name="s0">S0</option>
-                <option value="s1" name="s1">S1</option>
-                <option value="s2" name="s2">S2</option>
-                <option value="s3" name="s3">S3</option>
-                <option value="s4" name="s4">S4</option>
-                </select>
-               </div>
-            </label>
-            
-            <label>
-            <div className="field">
-                Tipo:
-                <select name="clasificacion"  className="form-control">
-                <option value="consulta">Consulta</option>
-                <option value="incidente">Incidente</option>
-                
-                </select>
-            </div>
-            </label><br></br>
-            <label>
-            <div className="field">
-                Titulo:
-                <input type="text" name="titulo"  className="form-control"/>
-            </div>
-            </label><br></br>
-            <label>
-            <div className="field">
-                Producto:
-                <input type="text" name="producto"  className="form-control"/>
-            </div>
-            </label><br></br>
-            <label>
-            <div className="field">
-                Descripcion:
-                <textarea rows="5" name="descripcion"  className="form-control" />
-            </div>
-            </label><br></br>
+        <form onSubmit={this.handleSubmitCreate}>
             <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" />
+            <input type="submit" value="Atender llamada" name="submit" className="btn btn-primary" onClick={this.handleSubmitAnswer.bind(this)}/>
         </form>
-
-        {this.state.mostrarMensaje  &&
-          <div className="cointainer-fluid">
-            <br/>
-            <h4 className="card-title">
-              Se creo el ticket exitosamente
-            </h4>
-          </div>
-        }       
       </div>
       
     );
