@@ -23,7 +23,7 @@ class Soporte extends Component {
 
   render() {
     return (
-      <div className="form-group">
+      <div class="jumbotron">
         <form onSubmit={this.handleSubmitCreate}>
           <br></br>&nbsp;
             <input type="submit" value="Crear ticket" name="submit" class="btn btn-success btn-lg" /> 
