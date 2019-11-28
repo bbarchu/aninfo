@@ -2,10 +2,30 @@ import React, { Component } from 'react';
 
 
 class Soporte extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      mostrarMensaje: false
+    }
+  }
+
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    //return <h1>Se agrego el ticket</h1>;
+
+    this.setState({...this.state,  mostrarMensaje: true});
+
+    console.log("llamando");
+    console.log(this.state.mostrarMensaje)
+  }
+
   render() {
     return (
       <div className="form-group">
-        <form>
+        <form onSubmit={this.handleSubmit}>
             <h2>Generar ticket</h2>
             <label>
               <div className="field">
@@ -48,8 +68,15 @@ class Soporte extends Component {
                 <input type="text" name="titulo"  className="form-control"/>
             </div>
             </label><br></br>
-            <input type="submit" value="Submit" name="submit"  />
-        </form>        
+            <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" />
+        </form>
+
+        {this.state.mostrarMensaje  &&
+        
+        <h4>
+          Se creo el ticket exitosamente
+        </h4>
+        }       
       </div>
       
     );
