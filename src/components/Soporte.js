@@ -49,6 +49,12 @@ class Soporte extends Component {
             </label><br></br>
             <label>
             <div className="field">
+                Titulo:
+                <input type="text" name="titulo"  className="form-control"/>
+            </div>
+            </label><br></br>
+            <label>
+            <div className="field">
                 Producto:
                 <input type="text" name="producto"  className="form-control"/>
             </div>
@@ -56,25 +62,19 @@ class Soporte extends Component {
             <label>
             <div className="field">
                 Descripcion:
-                <input type="text" name="descripcion"  className="form-control" />
-            </div>
-            </label><br></br>
-            <label>
-            <div className="field">
-                Titulo:
-                <input type="text" name="titulo"  className="form-control"/>
+                <textarea rows="5" name="descripcion"  className="form-control" />
             </div>
             </label><br></br>
             <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" />
         </form>
 
         {this.state.mostrarMensaje  &&
-        <div className="cointainer-fluid">
-          <h4 className="card-title">
-            Se creo el ticket exitosamente
-          </h4>
-            
-        </div>
+          <div className="cointainer-fluid">
+            <br/>
+            <h4 className="card-title">
+              Se creo el ticket exitosamente
+            </h4>
+          </div>
         }       
       </div>
       
