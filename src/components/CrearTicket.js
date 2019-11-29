@@ -9,19 +9,14 @@ class CrearTicket extends Component {
     this.agregarNuevaTarea = this.agregarNuevoTicket.bind(this);
     this.state = {
         tickets: [
-          {
-            titulo: "",
-            tipo: "",
-            clasificacion: "",
-            producto: "",
-            descripcion: ""
-          }
+          {}
         ],
         titulo: "",
         tipo: "Consulta",
         clasificacion: "S0",
         producto: "",
         descripcion: "",
+        fechaAlta:"02/12/19",
         mostrarMensaje: false,        
     }
   }
@@ -40,9 +35,6 @@ class CrearTicket extends Component {
     this.setState({
       tickets: [...this.state.tickets, ticket],
     });
-
-    console.log(ticket);
-    console.log(this.state.tickets);
   }
   
   handleSubmit(event) {
@@ -54,10 +46,9 @@ class CrearTicket extends Component {
       tipo: this.state.tipo,
       clasificacion: this.state.clasificacion,
       producto: this.state.producto,
-      descripcion: this.state.descripcion
+      descripcion: this.state.descripcion,
+      fechaAlta:this.state.fechaAlta
     }
-
-    console.log(this.state);
 
     this.agregarNuevoTicket(ticket);
   }
@@ -126,13 +117,15 @@ class CrearTicket extends Component {
           </div>
         }
         <br></br>
-        <table>
+        <h2> Tickets abiertos</h2>
+        <table>          
           <tr>
             <th>Titulo</th>
             <th>Producto</th>
             <th>Tipo</th>
             <th>Clasificacion</th>
             <th>Descripcion</th>
+            <th>Fecha de alta</th>
           </tr>
         
           <tbody>
@@ -144,6 +137,7 @@ class CrearTicket extends Component {
                   <td>{ticket.tipo}</td>
                   <td>{ticket.clasificacion}</td>
                   <td>{ticket.descripcion}</td>
+                  <td>{ticket.fechaAlta}</td>
                   </tr>
                   );
           })}
