@@ -9,7 +9,23 @@ class CrearTicket extends Component {
     this.agregarNuevaTarea = this.agregarNuevoTicket.bind(this);
     this.state = {
         tickets: [
-          {}
+          {
+          titulo: "Problema en base de datos",
+          tipo: "Incidente",
+          clasificacion: "S0",
+          producto: "Green app",
+          descripcion: "Se borraron archivos",
+          fechaAlta:"10/11/19",
+          },
+          {
+            titulo: "La app deja de responder",
+            tipo: "Incidente",
+            clasificacion: "S0",
+            producto: "Gestion app",
+            descripcion: "La app deja de responder si hay mas de 127 usuarios en linea",
+            fechaAlta:"02/12/19",
+            }
+            
         ],
         titulo: "",
         tipo: "Consulta",
