@@ -33,7 +33,8 @@ class CrearTicket extends Component {
         producto: "",
         descripcion: "",
         fechaAlta:"02/12/19",
-        mostrarMensaje: false,        
+        mostrarMensaje: false,
+        mostrarError: false        
     }
   }
 
@@ -55,7 +56,15 @@ class CrearTicket extends Component {
   
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({...this.state,  mostrarMensaje: true});
+
+    if(this.state.titulo === "" || this.state.producto === "" ){
+      this.setState({...this.state,  mostrarMensaje: false, mostrarError: true});
+
+      console.log(this.state.mostrarError)
+      console.log(this.state.mostrarMensaje)
+      return;
+    }
+    this.setState({...this.state,  mostrarMensaje: true, mostrarError: false});
 
     var ticket = {
       titulo: this.state.titulo,
@@ -67,11 +76,15 @@ class CrearTicket extends Component {
     }
 
     this.agregarNuevoTicket(ticket);
+    
+    
   }
 
   render() {
     return (
+      <div class="jumbotron">
       <div className="form-group">
+        
         <form onSubmit={this.handleSubmit}>
             <h2>Generar ticket</h2>
             <label>
@@ -86,7 +99,7 @@ class CrearTicket extends Component {
                 <option value="s4" name="s4">S4</option>
                 </select>
                </div>
-            </label>
+            </label>&nbsp;
             
             <label>
             <div className="field">
@@ -98,14 +111,14 @@ class CrearTicket extends Component {
                 
                 </select>
             </div>
-            </label><br></br>
+            </label>&nbsp;
             <label>
             <div className="field">
                 Titulo:
-                <input type="text" name="titulo"  className="form-control" 
+                <input class="form-control" type="text" name="titulo"  
                 onChange={event => this.setState({ titulo: event.target.value })}/>
             </div>
-            </label><br></br>
+            </label>&nbsp;
             <label>
             <div className="field">
                 Producto:
@@ -123,14 +136,22 @@ class CrearTicket extends Component {
             <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" 
             />
         </form>
+        </div>
 
         {this.state.mostrarMensaje  &&
           <div className="cointainer-fluid">
             <br/>
-            <h4 className="card-title">
+            <h4 class="card-title">
               Se creo el ticket exitosamente
             </h4>
           </div>
+          
+        }
+
+        {this.state.mostrarError  &&
+          <h4 class="card-title">
+          Faltan campos por rellenar!
+        </h4>
         }
         <br></br>
         <h2> Tickets abiertos</h2>
@@ -159,7 +180,10 @@ class CrearTicket extends Component {
           })}
           </tbody>
         </table>
-        </div>       
+
+       
+
+        </div>     
       
     );
   }
