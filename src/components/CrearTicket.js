@@ -6,17 +6,60 @@ class CrearTicket extends Component {
     super(props);
     
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.agregarNuevaTarea = this.agregarNuevoTicket.bind(this);
     this.state = {
-      mostrarMensaje: false
+        tickets: [
+          {
+            titulo: "",
+            tipo: "",
+            clasificacion: "",
+            producto: "",
+            descripcion: ""
+          }
+        ],
+        titulo: "",
+        tipo: "Consulta",
+        clasificacion: "S0",
+        producto: "",
+        descripcion: "",
+        mostrarMensaje: false,        
     }
   }
 
+  componentWillUnmount() {
+    document.tickets = this.state.tickets;
+  }
+
+  componentDidMount() {
+    if (document.tickets) {
+      this.setState({tickets:  document.tickets});
+    }
+  }
+
+  agregarNuevoTicket(ticket) {
+    this.setState({
+      tickets: [...this.state.tickets, ticket],
+    });
+
+    console.log(ticket);
+    console.log(this.state.tickets);
+  }
   
   handleSubmit(event) {
     event.preventDefault();
-    //return <h1>Se agrego el ticket</h1>;
-
     this.setState({...this.state,  mostrarMensaje: true});
+
+    var ticket = {
+      titulo: this.state.titulo,
+      tipo: this.state.tipo,
+      clasificacion: this.state.clasificacion,
+      producto: this.state.producto,
+      descripcion: this.state.descripcion
+    }
+
+    console.log(this.state);
+
+    this.agregarNuevoTicket(ticket);
   }
 
   render() {
@@ -27,7 +70,8 @@ class CrearTicket extends Component {
             <label>
               <div className="field">
                 Clasificacion:
-                <select name="clasificacion"  className="form-control">
+                <select name="clasificacion"  className="form-control" 
+                onChange={event => this.setState({ clasificacion: event.target.value })}>
                 <option value="s0" name="s0">S0</option>
                 <option value="s1" name="s1">S1</option>
                 <option value="s2" name="s2">S2</option>
@@ -40,7 +84,8 @@ class CrearTicket extends Component {
             <label>
             <div className="field">
                 Tipo:
-                <select name="clasificacion"  className="form-control">
+                <select name="tipo"  className="form-control" 
+                onChange={event => this.setState({ tipo: event.target.value })}>
                 <option value="consulta">Consulta</option>
                 <option value="incidente">Incidente</option>
                 
@@ -50,22 +95,26 @@ class CrearTicket extends Component {
             <label>
             <div className="field">
                 Titulo:
-                <input type="text" name="titulo"  className="form-control"/>
+                <input type="text" name="titulo"  className="form-control" 
+                onChange={event => this.setState({ titulo: event.target.value })}/>
             </div>
             </label><br></br>
             <label>
             <div className="field">
                 Producto:
-                <input type="text" name="producto"  className="form-control"/>
+                <input type="text" name="producto"  className="form-control"
+                onChange={event => this.setState({ producto: event.target.value })}/>
             </div>
             </label><br></br>
             <label>
             <div className="field">
                 Descripcion:
-                <textarea rows="5" name="descripcion"  className="form-control" />
+                <textarea rows="5" name="descripcion"  className="form-control" 
+                onChange={event => this.setState({ descripcion: event.target.value })}/>
             </div>
             </label><br></br>
-            <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" />
+            <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" 
+            />
         </form>
 
         {this.state.mostrarMensaje  &&
@@ -75,8 +124,32 @@ class CrearTicket extends Component {
               Se creo el ticket exitosamente
             </h4>
           </div>
-        }       
-      </div>
+        }
+        <br></br>
+        <table>
+          <tr>
+            <th>Titulo</th>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Clasificacion</th>
+            <th>Descripcion</th>
+          </tr>
+        
+          <tbody>
+          {this.state.tickets.map ( ticket => {
+                return ( 
+                  <tr key={ticket.titulo}>
+                  <td> {ticket.titulo} </td>
+                  <td> {ticket.producto} </td>
+                  <td>{ticket.tipo}</td>
+                  <td>{ticket.clasificacion}</td>
+                  <td>{ticket.descripcion}</td>
+                  </tr>
+                  );
+          })}
+          </tbody>
+        </table>
+        </div>       
       
     );
   }
