@@ -44,6 +44,17 @@ class AtencionDeLlamada extends Component {
     }
 }
 
+
+  componentWillUnmount() {
+    document.tickets = this.state.tickets;
+  }
+
+  componentDidMount() {
+    if (document.tickets) {
+      this.setState({tickets:  document.tickets});
+    }
+  }
+
   update(){
     this.setState({tickets:[...this.state.tickets]})
   }

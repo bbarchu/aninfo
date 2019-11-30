@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, LinearProgress, TextField }from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 class CrearTicket extends Component {
   constructor(props) {
@@ -10,29 +11,36 @@ class CrearTicket extends Component {
     this.state = {
         tickets: [
           {
-          titulo: "Problema en base de datos",
+          titulo: "Falla por cantidad de usuarios",
           tipo: "Incidente",
-          clasificacion: "S0",
-          producto: "Green app",
-          descripcion: "Se borraron archivos",
-          fechaAlta:"10/11/19",
+          severidad: "S1",
+          producto: "Green App",
+          descripcion: "La app deja de responder si hay más de 127 usuarios registrados",
+          alta: "24/11/2019"
           },
           {
-            titulo: "La app deja de responder",
-            tipo: "Incidente",
-            clasificacion: "S0",
-            producto: "Gestion app",
-            descripcion: "La app deja de responder si hay mas de 127 usuarios en linea",
-            fechaAlta:"02/12/19",
-            }
-            
+          titulo: "Compatibilidad con MSDOS",
+          tipo: "Consulta",
+          severidad: "S5",
+          producto: "Gestión App",
+          descripcion: "Cliente desea saber si la app será compatible con MSDOS",
+          alta: "25/11/2019"
+          },
+          {
+          titulo: "Incorrecta conversión de monedas",
+          tipo: "Incidente",
+          severidad: "S0",
+          producto: "Gestión App",
+          descripcion: "La conversión de monedas arroja resultados erróneos",
+          alta: "25/11/2019"
+          }
         ],
         titulo: "",
         tipo: "Consulta",
-        clasificacion: "S0",
+        severidad: "S0",
         producto: "",
         descripcion: "",
-        fechaAlta:"02/12/19",
+        alta:"02/12/19",
         mostrarMensaje: false,
         mostrarError: false        
     }
@@ -53,9 +61,13 @@ class CrearTicket extends Component {
       tickets: [...this.state.tickets, ticket],
     });
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
+
+    setTimeout(function() {
+      this.setState({...this.state,  mostrarMensaje: false, mostrarError: false});
+    }.bind(this), 5000)
 
     if(this.state.titulo === "" || this.state.producto === "" ){
       this.setState({...this.state,  mostrarMensaje: false, mostrarError: true});
@@ -69,10 +81,10 @@ class CrearTicket extends Component {
     var ticket = {
       titulo: this.state.titulo,
       tipo: this.state.tipo,
-      clasificacion: this.state.clasificacion,
+      severidad: this.state.severidad,
       producto: this.state.producto,
       descripcion: this.state.descripcion,
-      fechaAlta:this.state.fechaAlta
+      alta:this.state.alta
     }
 
     this.agregarNuevoTicket(ticket);
@@ -82,32 +94,34 @@ class CrearTicket extends Component {
 
   render() {
     return (
-      <div class="jumbotron">
-      <div className="form-group">
+      <div>
+      <div class="card bg-light mb-3" >
+        <div class="card-header">Generar ticket</div>
+        <div class="card-body">
+
+        <div className="form-group" style={{display: "inline-block"}}>
         
-        <form onSubmit={this.handleSubmit}>
-            <h2>Generar ticket</h2>
+        <form onSubmit={this.handleSubmit} style={{width: '100%'}}>
             <label>
               <div className="field">
                 Clasificacion:
-                <select name="clasificacion"  className="form-control" 
-                onChange={event => this.setState({ clasificacion: event.target.value })}>
-                <option value="s0" name="s0">S0</option>
-                <option value="s1" name="s1">S1</option>
-                <option value="s2" name="s2">S2</option>
-                <option value="s3" name="s3">S3</option>
-                <option value="s4" name="s4">S4</option>
+                <select name="severidad"  className="form-control" 
+                onChange={event => this.setState({ severidad: event.target.value })}>
+                <option value="S0" name="s0">S0</option>
+                <option value="S1" name="s1">S1</option>
+                <option value="S2" name="s2">S2</option>
+                <option value="S3" name="s3">S3</option>
+                <option value="S4" name="s4">S4</option>
                 </select>
                </div>
             </label>&nbsp;
-            
             <label>
             <div className="field">
                 Tipo:
                 <select name="tipo"  className="form-control" 
                 onChange={event => this.setState({ tipo: event.target.value })}>
-                <option value="consulta">Consulta</option>
-                <option value="incidente">Incidente</option>
+                <option value="Consulta">Consulta</option>
+                <option value="Incidente">Incidente</option>
                 
                 </select>
             </div>
@@ -126,62 +140,96 @@ class CrearTicket extends Component {
                 onChange={event => this.setState({ producto: event.target.value })}/>
             </div>
             </label><br></br>
-            <label>
+            <label style={{width: '100%'}}>
             <div className="field">
                 Descripcion:
-                <textarea rows="5" name="descripcion"  className="form-control" 
+                <textarea rows="5" name="descripcion"  className="form-control"
                 onChange={event => this.setState({ descripcion: event.target.value })}/>
             </div>
             </label><br></br>
-            <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary" 
-            />
-        </form>
+            <input type="submit" value="Crear ticket" name="submit" className="btn btn-primary"/>
+          </form>
+          </div>
+
+          {this.state.mostrarMensaje  &&
+            <div className="cointainer-fluid">
+              <h4 class="card-title">
+                Se creo el ticket exitosamente
+              </h4>
+            </div>}
+
+          {this.state.mostrarError  &&
+            <h4 class="card-title">
+              Faltan campos por rellenar!
+            </h4>}
+
+          </div>
         </div>
 
-        {this.state.mostrarMensaje  &&
-          <div className="cointainer-fluid">
-            <br/>
-            <h4 class="card-title">
-              Se creo el ticket exitosamente
-            </h4>
-          </div>
-          
-        }
+      <div style={{paddingLeft: "10%", paddingRight: "10%",marginTop:"2%"}}>
+                    <ExpansionPanel square expanded={false}>
+                        <ExpansionPanelSummary>
+                            <div className="column" style={{flexBasis: '24%'}}>
+                                <Typography className="heading" onClick={this.sorttitulo} style={{textAlign:"left"}}><b>Título</b>
+                                    {this.state.titulosort ? <i className="arrow circle down icon"></i> :
+                                        <i className="arrow circle up icon"></i>}</Typography>
+                            </div>
 
-        {this.state.mostrarError  &&
-          <h4 class="card-title">
-          Faltan campos por rellenar!
-        </h4>
-        }
-        <br></br>
-        <h2> Tickets abiertos</h2>
-        <table>          
-          <tr>
-            <th>Titulo</th>
-            <th>Producto</th>
-            <th>Tipo</th>
-            <th>Clasificacion</th>
-            <th>Descripcion</th>
-            <th>Fecha de alta</th>
-          </tr>
-        
-          <tbody>
-          {this.state.tickets.map ( ticket => {
-                return ( 
-                  <tr key={ticket.titulo}>
-                  <td> {ticket.titulo} </td>
-                  <td> {ticket.producto} </td>
-                  <td>{ticket.tipo}</td>
-                  <td>{ticket.clasificacion}</td>
-                  <td>{ticket.descripcion}</td>
-                  <td>{ticket.fechaAlta}</td>
-                  </tr>
-                  );
-          })}
-          </tbody>
-        </table>
+                            <div className="column" style={{flexBasis: '24.0%'}}>
+                                <Typography className="heading" onClick={this.sorttipo} style={{textAlign:"left"}}><b>Tipo</b>
+                                    {this.state.tiposort ? <i className="arrow circle down icon"></i> :
+                                        <i className="arrow circle up icon"></i>}</Typography>
+                            </div>
 
-       
+                            <div className="column" style={{flexBasis: '24.0%'}}>
+                                <Typography className="heading" onClick={this.sortseveridad} style={{textAlign:"left"}}><b>Severidad</b>
+                                    {this.state.severidadsort ? <i className="arrow circle down icon"></i> :
+                                        <i className="arrow circle up icon"></i>}</Typography>
+                            </div>
+
+
+                            <div className="column" style={{flexBasis: '24.0%'}}>
+                                <Typography className="heading" onClick={this.sortproducto} style={{textAlign:"left"}}><b>Producto</b>
+                                    {this.state.productosort ? <i className="arrow circle down icon"></i> :
+                                        <i className="arrow circle up icon"></i>}</Typography>
+                            </div>
+
+                        </ExpansionPanelSummary>
+                    </ExpansionPanel>
+            </div>
+
+           {this.state.tickets.map ((ticket, i) => {
+                if (this.state.searchTerm)
+                    if (!ticket.titulo.toLowerCase().startsWith(this.state.searchTerm.toLowerCase())
+                && !ticket.tipo.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()) 
+                && !ticket.severidad.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()) 
+                && !ticket.producto.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()))
+                        return null;
+                   return<div id="ticket" key={i}  style={{position:"static",paddingLeft: "10%", paddingRight: "10%"}}>
+                                <ExpansionPanel square>
+                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>} aria-label="Expand" aria-controls="additional-actions3-content" id="additional-actions3-header">
+                                        <div className="column" style={{flexBasis: '25%'}}>
+                                            <Typography className="heading" style={{textAlign:"left",}}>{ticket.titulo}</Typography>
+                                        </div>
+                                        <div className="column" style={{flexBasis: '25.0%'}}>
+                                            <Typography className="heading" style={{textAlign:"left"}}>{ticket.tipo}</Typography>
+                                        </div>
+                                        <div className="column" style={{flexBasis: '25.0%'}}>
+                                            <Typography className="heading" style={{textAlign:"left"}}>{ticket.severidad}</Typography>
+                                        </div>
+                                        <div className="column" style={{flexBasis: '25.0%'}}>
+                                            <Typography className="heading" style={{textAlign:"left"}}>{ticket.producto}</Typography>
+                                        </div>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails style={{background: "rgb(245,245,245)"}}>
+                                        <div className="column" style={{textAlign:"left"}}>
+                                            <Typography className="heading" style={{marginTop:"10px"}}><b>Alta:</b> {ticket.alta}</Typography>
+                                            <Typography className="heading" style={{marginTop:"10px"}}><b>Descripción:</b> {ticket.descripcion}</Typography>
+                                        </div>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                   </div>
+            })}
 
         </div>     
       
