@@ -49,7 +49,7 @@ render() {
     <tr>
       <td>25/11/2019</td>
       <td>S0</td>
-      <td>Consulta</td>
+      <td>Incidente</td>
       <td>Gestión App</td>
       <td>La conversión de monedas se realiza de errónea.</td>
     </tr>

@@ -4,8 +4,8 @@ import './App.css';
 import Soporte from './components/Soporte';
 import CrearTicket from './components/CrearTicket';
 import AtenderLlamada from './components/AtenderLlamada';
+import Horas from './components/Horas';
 import NavigationBar from './components/Navigation';
-
 
 class App extends Component {
   render() {
@@ -28,6 +28,10 @@ class App extends Component {
             exact
             path="/Soporte/AtenderLlamada"
             component={AtenderLlamada} />
+          <Route
+            exact
+            path="/CargarHoras"
+            component={Horas} />
           <Route component={Soporte} />
         </Switch>
 

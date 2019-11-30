@@ -37,7 +37,7 @@ export default class NavigationBar extends Component {
             </Button>
             <Button id="employee"
                     //component={Link}
-                    to="/employees-s2"
+                    to="/Empleados"
                     color='inherit'
                     className="employee"
                     style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
@@ -58,6 +58,14 @@ export default class NavigationBar extends Component {
                     className="sales"
                     style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
                 Soporte
+            </Button>
+            <Button id="horas"
+                    component={Link}
+                    to="/CargarHoras"
+                    color='inherit'
+                    className="sales"
+                    style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
+                Gestión de horas
             </Button>
             <IconButton to="/HomerPage" style={{textAlign:'center', color: "inherit", float: "right",marginTop:".1%"}}>
                 <AccountCircleIcon fontSize={"large"}/>
