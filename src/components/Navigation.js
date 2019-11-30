@@ -56,14 +56,16 @@ export default class NavigationBar extends Component {
                     to="/Soporte"
                     color='inherit'
                     className="sales"
+                    name="soporteButton"
                     style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
                 Soporte
             </Button>
             <Button id="horas"
                     component={Link}
-                    to="/CargarHoras"
+                    to="/GestionDeHoras"
                     color='inherit'
                     className="sales"
+                    name="gestionDeHorasButton"
                     style={{fontSize:"13px",float: "left",marginRight: "1%", height:"100%"}}>
                 Gestión de horas
             </Button>

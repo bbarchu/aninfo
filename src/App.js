@@ -30,7 +30,7 @@ class App extends Component {
             component={AtenderLlamada} />
           <Route
             exact
-            path="/CargarHoras"
+            path="/GestionDeHoras"
             component={Horas} />
           <Route component={Soporte} />
         </Switch>

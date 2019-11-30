@@ -147,6 +147,7 @@ class Horas extends Component {
                                         </div>
                                         <div className="column" style={{flexBasis: '25.0%'}} onClick="event.stopPropagation()">
 							    <TextField
+                                                   name="campoHorasConsumidas"
 								   value={this.state.tareas[i].horasConsumida}
 								   onChange={(e) => {
 									 let h = this.state.tareas
