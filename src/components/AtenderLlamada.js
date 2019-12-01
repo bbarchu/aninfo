@@ -14,7 +14,7 @@ class AtencionDeLlamada extends Component {
         tiposort: false,
         severidadsort: false,
         productosort: false,
-        tickets: [
+        ticketsCliente: [
           {
           titulo: "Falla por cantidad de usuarios",
           tipo: "Incidente",
@@ -46,28 +46,28 @@ class AtencionDeLlamada extends Component {
 
 
   componentWillUnmount() {
-    document.tickets = this.state.tickets;
+    document.ticketsCliente = this.state.ticketsCliente;
   }
 
   componentDidMount() {
-    if (document.tickets) {
-      this.setState({tickets:  document.tickets});
+    if (document.ticketsCliente) {
+      this.setState({ticketsCliente:  document.ticketsCliente});
     }
   }
 
   update(){
-    this.setState({tickets:[...this.state.tickets]})
+    this.setState({ticketsCliente:[...this.state.ticketsCliente]})
   }
 
   sorttitulo(){
     if(this.state.titulosort){
-      this.state.tickets.sort(function(first, second){
+      this.state.ticketsCliente.sort(function(first, second){
         return second.titulo.localeCompare(first.titulo);});
       this.setState({titulosort:false});
       this.update();
       return null;
     }
-    this.state.tickets.sort(function(first, second){
+    this.state.ticketsCliente.sort(function(first, second){
       return first.titulo.localeCompare(second.titulo);});
     this.setState({titulosort:true});
     this.update();
@@ -76,13 +76,13 @@ class AtencionDeLlamada extends Component {
 
   sorttipo(){
     if(this.state.tiposort){
-      this.state.tickets.sort(function(first, second){
+      this.state.ticketsCliente.sort(function(first, second){
         return second.tipo.localeCompare(first.tipo);});
       this.setState({tiposort:false});
       this.update();
       return null;
     }
-    this.state.tickets.sort(function(first, second){
+    this.state.ticketsCliente.sort(function(first, second){
       return first.tipo.localeCompare(second.tipo);});
     this.setState({tiposort:true});
     this.update();
@@ -91,13 +91,13 @@ class AtencionDeLlamada extends Component {
 
   sortseveridad(){
     if(this.state.severidadsort){
-      this.state.tickets.sort(function(first, second){
+      this.state.ticketsCliente.sort(function(first, second){
         return second.severidad.localeCompare(first.severidad);});
       this.setState({severidadsort:false});
       this.update();
       return null;
     }
-    this.state.tickets.sort(function(first, second){
+    this.state.ticketsCliente.sort(function(first, second){
       return first.severidad.localeCompare(second.severidad);});
     this.setState({severidadsort:true});
     this.update();
@@ -106,13 +106,13 @@ class AtencionDeLlamada extends Component {
 
   sortproducto(){
     if(this.state.productosort){
-      this.state.tickets.sort(function(first, second){
+      this.state.ticketsCliente.sort(function(first, second){
         return second.producto.localeCompare(first.producto);});
       this.setState({productosort:false});
       this.update();
       return null;
     }
-    this.state.tickets.sort(function(first, second){
+    this.state.ticketsCliente.sort(function(first, second){
       return first.producto.localeCompare(second.producto);});
     this.setState({productosort:true});
     this.update();
@@ -182,7 +182,7 @@ render() {
                     </ExpansionPanel>
             </div>
 
-           {this.state.tickets.map ((ticket, i) => {
+           {this.state.ticketsCliente.map ((ticket, i) => {
                 if (this.state.searchTerm)
                     if (!ticket.titulo.toLowerCase().startsWith(this.state.searchTerm.toLowerCase())
                 && !ticket.tipo.toLowerCase().startsWith(this.state.searchTerm.toLowerCase()) 
